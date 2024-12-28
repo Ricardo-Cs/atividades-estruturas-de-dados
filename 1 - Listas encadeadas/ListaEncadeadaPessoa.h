@@ -1,5 +1,7 @@
-//Código imcompleto e não revisado!!!
-
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+#include <string.h>
 // Struct - lista encadeada pessoa
 struct pessoa {
     int id;
@@ -106,11 +108,3 @@ int compararListas(Pessoa* p1, Pessoa* p2) {
     }
     return pe1 == pe2; // NULL == NULL
 } // Fim da função compararListas()
-
-//1 - Função para verificar repetições de id na lista;
-//2 - (Mais desafiadora) Função para comparar dois registros com base em um campo definido pelo usuário;
-//3 - Função de ordenação da lista com base no id - crecente ou decrescente;
-//4 - Função de busca binária após ordenação com base no id;
-//5 - Montar a estrutura de cada registro com id auto increment;
-//6 - Função para alterar campos de um registro (busca) na lista - editar;
-//7 - Sistemas para n listas

@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 //Arquivo só com menus e strings
 
 //Procedimento menuPrincipal()
