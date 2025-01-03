@@ -13,16 +13,16 @@ struct pessoa {
 
 typedef struct pessoa Pessoa;
 
-// Função criarLista()
+// FunÃ§Ã£o criarLista()
 Pessoa* criarLista() {
     return NULL;
-} // Fim da função criarLista()
+} // Fim da funÃ§Ã£oo criarLista()
 
-// Função inserirLista() - inserir um novo elemento na lista
+// FunÃ§Ã£o inserirLista() - inserir um novo elemento na lista
 Pessoa* inserirLista(Pessoa* p, int novoId, char *novoNome, float novoPeso, int novaIdade) {
     Pessoa* novo = (Pessoa*)malloc(sizeof(Pessoa));
     if (novo == NULL) {
-        printf("Erro ao alocar memória! Não será possível inserir novo elemento na lista!\n");
+        printf("Erro ao alocar memï¿½ria! Nï¿½o serï¿½ possï¿½vel inserir novo elemento na lista!\n");
         exit(1);
     }
     novo->id = novoId;
@@ -31,7 +31,7 @@ Pessoa* inserirLista(Pessoa* p, int novoId, char *novoNome, float novoPeso, int 
     novo->idade = novaIdade;
     novo->prox = p;
     return novo;
-} // Fim da função inserirLista()
+} // Fim da funÃ§Ã£o inserirLista()
 
 // Procedimento imprimirLista()
 void imprimirLista(Pessoa* p) {
@@ -43,9 +43,9 @@ void imprimirLista(Pessoa* p) {
         printf("\nPeso da pessoa (kg): %.2f", pe->peso);
         printf("\nIdade da pessoa (anos completos): %d", pe->idade);
     }
-} // Fim da função imprimirLista()
+} // Fim da funÃ§Ã£o imprimirLista()
 
-// Função buscaElemento()
+// FunÃ§Ã£o buscaElemento()
 Pessoa* buscaElemento(Pessoa* p, int codBusca) {
     Pessoa* pe;
     for (pe = p; pe != NULL; pe = pe->prox) {
@@ -54,14 +54,14 @@ Pessoa* buscaElemento(Pessoa* p, int codBusca) {
         }
     }
     return NULL;
-} // Fim da função buscaElemento()
+} // Fim da funÃ§Ã£o buscaElemento()
 
-// Função listaVazia()
+// FunÃ§Ã£o listaVazia()
 int listaVazia(Pessoa* p) {
     return p == NULL; //Verdadeiro ou falso direto
 } // Fim da listaVazia()
 
-// Função removerElemento()
+// FunÃ§Ã£o removerElemento()
 Pessoa* removerElemento(Pessoa* p, int codBusca) {
     Pessoa* pe = p;
     Pessoa* ant = NULL;
@@ -71,21 +71,21 @@ Pessoa* removerElemento(Pessoa* p, int codBusca) {
         pe = pe->prox;
     }
 
-    // Lista está vazia ou o elemento com codBusca não foi localizado
+    // Lista estï¿½ vazia ou o elemento com codBusca nï¿½o foi localizado
     if (pe == NULL)
         return p;
 
     // Elemento localizado na lista
-    if (ant == NULL) // Elemento removido é o "primeiro"
+    if (ant == NULL) // Elemento removido ï¿½ o "primeiro"
         p = pe->prox;
     else
         ant->prox = pe->prox;
 
     free(pe);
     return p;
-} // Fim da função removerElemento()
+} // Fim da funÃ§Ã£o removerElemento()
 
-// Função liberarLista()
+// FunÃ§Ã£o liberarLista()
 Pessoa* liberarLista(Pessoa* p) {
     Pessoa* pe = p;
     while (pe != NULL) {
@@ -94,9 +94,9 @@ Pessoa* liberarLista(Pessoa* p) {
         pe = p1;
     }
     return NULL;
-} // Fim da função liberarLista()
+} // Fim da funÃ§Ã£o liberarLista()
 
-// Função compararListas() - Comparação com base no id
+// FunÃ§Ã£o compararListas() - Comparaï¿½ï¿½o com base no id
 int compararListas(Pessoa* p1, Pessoa* p2) {
     Pessoa* pe1 = p1;
     Pessoa* pe2 = p2;
@@ -107,4 +107,15 @@ int compararListas(Pessoa* p1, Pessoa* p2) {
         pe2 = pe2->prox;
     }
     return pe1 == pe2; // NULL == NULL
-} // Fim da função compararListas()
+} // Fim da funÃ§Ã£o compararListas()
+
+int compararPessoa(Pessoa* p1, Pessoa* p2, int campo) {
+    switch(campo) {
+        case 1: 
+            if(p1 == p2) return 1;
+            else return 0;
+            break;
+        case 2:
+            return strcmp(p1, p2);
+    }
+}
