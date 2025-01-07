@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//Arquivo só com menus e strings
+//Arquivo sÃ³ com menus e strings
 
 //Procedimento menuPrincipal()
 void menuPrincipal (void) {
@@ -11,6 +11,8 @@ void menuPrincipal (void) {
 	printf ("\n\n3 - Buscar Elemento em Lista Encadeada");
 	printf ("\n\n4 - Remover Registro de Lista Encadeada");
 	printf ("\n\n5 - Liberar Lista Encadeada");
+	printf ("\n\n6 - Ordenar Lista Encadeada");
+	printf ("\n\n7 - Editar Registro na Lista Encadeada");
 	printf ("\n\n0 - Sair");
 }//Fim do procedimento menuPrincipal()
 
