@@ -119,3 +119,53 @@ int compararPessoa(Pessoa* p1, Pessoa* p2, int campo) {
             return strcmp(p1, p2);
     }
 }
+
+//função ordenarLista() - Ordem crescente.
+Pessoa* ordenarLista(Pessoa* lista) {
+    if (lista == NULL || lista->prox == NULL) {
+        return lista;
+    }
+    Pessoa* novaLista = NULL;
+
+    while (lista != NULL) {
+        Pessoa* menor = lista;
+        Pessoa* anterior = NULL;
+        Pessoa* atual = lista;
+        while (atual->prox != NULL) {
+            if (atual->prox->id < menor->id) {
+                menor = atual->prox;
+                anterior = atual;
+            }
+            atual = atual->prox;
+        }
+        if (anterior != NULL) {
+            anterior->prox = menor->prox;
+        } else {
+            lista = lista->prox;
+        }
+        menor->prox = novaLista;
+        novaLista = menor;
+    }
+
+    return novaLista;
+}//Fim da função ordenarLista()
+
+//Função editarRegistro()
+void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int novaIdade) {
+    Pessoa* p = buscaElemento(lista, id);
+    if (p == NULL) {
+        printf("\n\n\nRegistro com ID %d não encontrado.", id);
+        return;
+    }
+    if (novoNome != NULL && strlen(novoNome) > 0) {
+        strcpy(p->nome, novoNome);
+    }
+    if (novoPeso >= 0) {
+        p->peso = novoPeso;
+    }
+    if (novaIdade >= 0) {
+        p->idade = novaIdade;
+    }
+
+    printf("\n\n\nRegistro com ID %d atualizado com sucesso.", id);
+}//Fim da função editarResgistro()
