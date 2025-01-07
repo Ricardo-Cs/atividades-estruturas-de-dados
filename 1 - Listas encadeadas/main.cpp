@@ -1,7 +1,7 @@
 #include "ListaEncadeadaPessoa.h"
 #include "menus.h"
 
-int main(int argc, char* argv[]) { //InÌcio da main()
+int main(int argc, char* argv[]) { //In√≠cio da main()
 	system ("cls");
 	setlocale (LC_ALL, "Portuguese");
     Pessoa* lista = criarLista(); // Inicia a lista vazia automaticamente sem passar por menu
@@ -9,19 +9,19 @@ int main(int argc, char* argv[]) { //InÌcio da main()
     char nome[80];
     float peso;
     
-    printf ("\n\n\n\tEste programa controla o cadastro de pessoas atravÈs de uma lista encadeada!");
+    printf ("\n\n\n\tEste programa controla o cadastro de pessoas atrav√©s de uma lista encadeada!");
     clear();
 
-	//InÌcio do laÁo de controle do menu principal
+	//In√≠cio do la√ßo de controle do menu principal
     do {
         menuPrincipal();
-        printf("\n\n\nEscolha uma opÁ„o: ");
+        printf("\n\n\nEscolha uma op√ß√£o: ");
         scanf("%d", &opcao);
         clear();
 
         switch (opcao) {
             case 1: // Inserir novo registro (pessoa) na lista
-            	printf ("\n\n\nOpÁ„o desejada - Inserir Registro em Lista Encadeada");
+            	printf ("\n\n\nOp√ß√£o desejada - Inserir Registro em Lista Encadeada");
                 printf("\n\nInforme o ID: ");
                 scanf("%d", &id);
                 printf("\n\nInforme o nome: ");
@@ -36,9 +36,9 @@ int main(int argc, char* argv[]) { //InÌcio da main()
                 break;
 
             case 2: // Imprimir lista encadeada
-            	printf ("\n\n\nOpÁ„o desejada - Listar Todos os Registros de Lista Encadeada");
+            	printf ("\n\n\nOp√ß√£o desejada - Listar Todos os Registros de Lista Encadeada");
                 if (listaVazia(lista)) {
-                    printf("\n\nImpossÌvel imprimir! A lista est· vazia!\n");
+                    printf("\n\nImposs√≠vel imprimir! A lista est√° vazia!\n");
                 } else {
                     printf("\n\n\tRegistros cadastrados na lista encadeada:\n\n");
                     imprimirLista(lista);
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) { //InÌcio da main()
                 break;
 
             case 3: {// Buscar elemento na lista encadeada
-            	printf ("\n\n\nOpÁ„o desejada - Buscar Elemento em Lista Encadeada");
+            	printf ("\n\n\nOp√ß√£o desejada - Buscar Elemento em Lista Encadeada");
                 printf("\n\nInforme o ID para buscar na lista encadeada: ");
                 scanf("%d", &id);
                 Pessoa* encontrada = buscaElemento(lista, id);
@@ -58,39 +58,60 @@ int main(int argc, char* argv[]) { //InÌcio da main()
                     printf("\n\nPeso: %.2f kg", encontrada->peso);
                     printf("\n\nIdade: %d anos completos", encontrada->idade);
                 } else {
-                    printf("\n\nPessoa com Id %d n„o encontrada na lista encadeada!", id);
+                    printf("\n\nPessoa com Id %d n√£o encontrada na lista encadeada!", id);
                 }
                 clear();
                 break;
 			}
 			
             case 4: // Remover elemento da lista encadeada
-               	printf ("\n\n\nOpÁ„o desejada - Remover Registro de Lista Encadeada");
-                printf("\n\n\nInforme o ID para remoÁ„o da lista encadeada: ");
+               	printf ("\n\n\nOp√ß√£o desejada - Remover Registro de Lista Encadeada");
+                printf("\n\n\nInforme o ID para remo√ß√£o da lista encadeada: ");
                 scanf("%d", &id);
                 lista = removerElemento(lista, id);
                 printf("\n\n\nCaso estivesse na lista, o registro foi removido com sucesso!");
-                //E se quisermos verificar se existe na lista ou n„o?
+                //E se quisermos verificar se existe na lista ou n√£o?
                 clear();
                 break;
 
             case 5: // Liberar lista encadeada
-            	printf ("\n\n\nOpÁ„o desejada - Liberar Lista Encadeada");
+            	printf ("\n\n\nOp√ß√£o desejada - Liberar Lista Encadeada");
                 lista = liberarLista(lista);
                 printf("\n\nLista liberada com sucesso!\n");
                 clear();
                 break;
+		
+	    case 6: // Ordenar lista encadeada
+    		printf("\n\n\nOp√ß√£o desejada - Ordenar Lista Encadeada");
+    		lista = ordenarLista(lista);
+		printf("\n\nLista encadeada ordenada com sucesso!\n");
+    		clear();
+    		break;
+				
+	    case 7: // Editar registro na lista encadeada
+    		printf("\n\n\nOp√ß√£o desejada - Editar Registro na Lista Encadeada");
+    		printf("\n\nInforme o ID do registro a ser editado: ");
+		scanf("%d", &id);
+		printf("\n\nInforme o novo nome: ");
+    		scanf(" %[^\n]s", nome);
+    		printf("\n\nInforme o novo peso: ");
+    		scanf("%f", &peso);
+    		printf("\n\nInforme a nova idade: ");
+    		scanf("%d", &idade);
+    		editarRegistro(lista, id, nome, peso, idade);
+    		clear();
+    		break;
 
             case 0: // Sair do programa
-                printf("\n\n\tVocÍ optou em sair do programa!");
+                printf("\n\n\tVoc√™ optou em sair do programa!");
                 clear();
                 break;
 
             default:
-                printf("\n\n\nOpÁ„o inv·lida! Informe uma opÁ„o v·lida!");
+                printf("\n\n\nOp√ß√£o inv√°lida! Informe uma op√ß√£o v√°lida!");
                 clear();
         }
-    } while (opcao != 0); //Fim do laÁo de controle do menu principal
+    } while (opcao != 0); //Fim do la√ßo de controle do menu principal
 
     // Garantir que a lista seja liberada ao final antes do encerramento do programa
     lista = liberarLista(lista);
