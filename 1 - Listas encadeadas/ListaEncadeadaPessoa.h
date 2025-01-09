@@ -111,13 +111,22 @@ int compararListas(Pessoa* p1, Pessoa* p2) {
 
 int compararPessoa(Pessoa* p1, Pessoa* p2, int campo) {
     switch(campo) {
-        case 1: 
-            if(p1 == p2) return 1;
-            else return 0;
+        case 1: // ID
+            return p1->id == p2->id;
             break;
-        case 2:
-            return strcmp(p1, p2);
-    }
+        case 2: // Nome
+            return strcmp(p1->nome, p2->nome);
+            break;
+        case 3: // Peso
+        	return p1->peso == p2->peso;
+    		break;
+    	case 4:
+    		return p1->idade == p2->idade;
+    		break;
+    	default:
+    		return 0;
+    		break;
+	}
 }
 
 //função ordenarLista() - Ordem crescente.
