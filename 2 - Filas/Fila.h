@@ -2,6 +2,7 @@
 
 //Estrutura Aluno
 typedef struct {
+	int id;
 	char nome[MAX];
 	int matricula;
 	int codCurso;
@@ -22,6 +23,9 @@ typedef struct {
 	No* tras; //último
 } Fila;//Fim da estrutura Fila
 
+// Variável global para controlar o autoIncrement do ID do aluno
+int alunoId = 1;
+
 //Procedimento inicializarFila()
 void inicializarFila(Fila* fila) {
 	fila->frente = NULL; //primeiro
@@ -37,11 +41,15 @@ int filaVazia (Fila* fila) {
 void enfileirar (Fila* fila, Aluno aluno) {
 	No* novoNo = (No*) malloc(sizeof(No));
 	if (novoNo == NULL) {
-		printf ("\n\n\nErro de alocação de memória!\n\n");
+		printf ("\n\nErro de alocação de memória!\n\n");
 		exit(1);
 	}
 	novoNo->aluno = aluno;
 	novoNo->prox = NULL;
+	
+	// Insere id autoIncrement no aluno 	
+	novoNo->aluno.id = alunoId;
+	alunoId++;
 	
 	if (filaVazia(fila)) {
 		fila->frente = novoNo; //primeiro
@@ -50,13 +58,13 @@ void enfileirar (Fila* fila, Aluno aluno) {
 	}
 	
 	fila->tras = novoNo; //último
-	printf ("\n\n\nNovo aluno enfileirado com sucesso!\n\n");
+	printf ("\n\nNovo aluno enfileirado com sucesso!\n\n");
 }//Fim do procedimento enfileirar()
 
 //Função desenfileirar()
 Aluno desenfileirar (Fila* fila) {
 	if (filaVazia(fila)) {
-		printf ("\n\n\nA fila está vazia!\n\n");
+		printf ("\n\nA fila está vazia!\n\n");
 		exit(1);
 	}
 	
@@ -75,15 +83,16 @@ Aluno desenfileirar (Fila* fila) {
 //Procedimento exibirFila()
 void exibirFila(Fila* fila) {
 	if (filaVazia(fila)) {
-		printf ("\n\n\nA fila está vazia!\n\n");
+		printf ("\n\nA fila está vazia!\n\n");
 		return;
 	}
 	
 	No* atual = fila->frente;
-	printf ("\n\n\n\tRelatório da Fila");
+	printf ("\n\n\nRelatório da Fila");
 	while (atual != NULL) {
 		Aluno alunoAtual = atual->aluno;
-		printf ("\n\n\n\nNome do aluno: %s.", alunoAtual.nome);
+		printf ("\n\n\n\nID do Aluno: %d.", alunoAtual.id);
+		printf ("\n\nNome do aluno: %s.", alunoAtual.nome);
 		printf ("\n\nNúmero da matrícula: %d.", alunoAtual.matricula);
 		printf ("\n\nCódigo do curso: %d.", alunoAtual.codCurso);
 		printf ("\n\nTipo do curso: %s.", alunoAtual.tipoCurso);
@@ -92,5 +101,3 @@ void exibirFila(Fila* fila) {
 		atual = atual->prox;
 	}
 }//Fim do procedimento exibirFila()
-
-

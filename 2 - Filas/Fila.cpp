@@ -6,6 +6,7 @@
 
 //Estrutura Aluno
 typedef struct {
+	int id;
 	char nome[MAX];
 	int matricula;
 	int codCurso;
@@ -25,6 +26,9 @@ typedef struct {
 	No* frente; //primeiro
 	No* tras; //último
 } Fila;//Fim da estrutura Fila
+
+// Variável global para controlar o autoIncrement do ID do aluno
+int alunoId = 1;
 
 //Procedimento inicializarFila()
 void inicializarFila(Fila* fila) {
@@ -46,6 +50,10 @@ void enfileirar (Fila* fila, Aluno aluno) {
 	}
 	novoNo->aluno = aluno;
 	novoNo->prox = NULL;
+	
+	// Insere id autoIncrement no aluno 	
+	novoNo->aluno.id = alunoId;
+	alunoId++;
 	
 	if (filaVazia(fila)) {
 		fila->frente = novoNo; //primeiro
@@ -87,7 +95,8 @@ void exibirFila(Fila* fila) {
 	printf ("\n\n\nRelatório da Fila");
 	while (atual != NULL) {
 		Aluno alunoAtual = atual->aluno;
-		printf ("\n\n\n\nNome do aluno: %s.", alunoAtual.nome);
+		printf ("\n\n\n\nID do Aluno: %d.", alunoAtual.id);
+		printf ("\n\nNome do aluno: %s.", alunoAtual.nome);
 		printf ("\n\nNúmero da matrícula: %d.", alunoAtual.matricula);
 		printf ("\n\nCódigo do curso: %d.", alunoAtual.codCurso);
 		printf ("\n\nTipo do curso: %s.", alunoAtual.tipoCurso);
@@ -96,5 +105,3 @@ void exibirFila(Fila* fila) {
 		atual = atual->prox;
 	}
 }//Fim do procedimento exibirFila()
-
-
