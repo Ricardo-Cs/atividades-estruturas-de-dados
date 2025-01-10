@@ -13,9 +13,22 @@ void menuPrincipal (void) {
 	printf ("\n\n5 - Liberar Lista Encadeada");
 	printf ("\n\n6 - Ordenar Lista Encadeada");
 	printf ("\n\n7 - Editar Registro na Lista Encadeada");
+	printf ("\n\n8 - Comparar Registros");
 	printf ("\n\n0 - Sair");
 }//Fim do procedimento menuPrincipal()
 
+int menuCompararRegistros (void) {
+	int op;
+	system ("cls");
+	printf ("\n\n\n\tMenu de Seleção de Campo");
+	printf ("\n\n\n1 - ID");
+	printf ("\n\n2 - Nome");
+	printf ("\n\n3 - Peso");
+	printf ("\n\n4 - Idade");
+	printf("\n\nInforme o campo que deseja comparar: ");
+	scanf("%d", &op);
+	return op;
+}
 
 //Procedimento clear()
 void clear (void) {

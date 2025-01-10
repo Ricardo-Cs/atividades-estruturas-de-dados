@@ -81,26 +81,33 @@ int main(int argc, char* argv[]) { //Início da main()
                 clear();
                 break;
 		
-	    case 6: // Ordenar lista encadeada
-    		printf("\n\n\nOpção desejada - Ordenar Lista Encadeada");
-    		lista = ordenarLista(lista);
-		printf("\n\nLista encadeada ordenada com sucesso!\n");
-    		clear();
-    		break;
-				
-	    case 7: // Editar registro na lista encadeada
-    		printf("\n\n\nOpção desejada - Editar Registro na Lista Encadeada");
-    		printf("\n\nInforme o ID do registro a ser editado: ");
-		scanf("%d", &id);
-		printf("\n\nInforme o novo nome: ");
-    		scanf(" %[^\n]s", nome);
-    		printf("\n\nInforme o novo peso: ");
-    		scanf("%f", &peso);
-    		printf("\n\nInforme a nova idade: ");
-    		scanf("%d", &idade);
-    		editarRegistro(lista, id, nome, peso, idade);
-    		clear();
-    		break;
+		    case 6: // Ordenar lista encadeada
+	    		printf("\n\n\nOpção desejada - Ordenar Lista Encadeada");
+	    		lista = ordenarLista(lista);
+			printf("\n\nLista encadeada ordenada com sucesso!\n");
+	    		clear();
+	    		break;
+					
+		    case 7: // Editar registro na lista encadeada
+	    		printf("\n\n\nOpção desejada - Editar Registro na Lista Encadeada");
+	    		printf("\n\nInforme o ID do registro a ser editado: ");
+				scanf("%d", &id);
+				printf("\n\nInforme o novo nome: ");
+	    		scanf(" %[^\n]s", nome);
+	    		printf("\n\nInforme o novo peso: ");
+	    		scanf("%f", &peso);
+	    		printf("\n\nInforme a nova idade: ");
+	    		scanf("%d", &idade);
+	    		editarRegistro(lista, id, nome, peso, idade);
+	    		clear();
+	    		break;
+	    		
+	    	case 8:
+	    		int campo;
+	    		printf("\n\n\nOp��o desejada - Comparar Registros");
+	    		campo = menuCompararRegistros();
+	    		clear();
+	    		
 
             case 0: // Sair do programa
                 printf("\n\n\tVocê optou em sair do programa!");

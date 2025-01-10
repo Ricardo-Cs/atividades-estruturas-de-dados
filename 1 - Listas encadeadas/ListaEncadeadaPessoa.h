@@ -115,12 +115,17 @@ int compararPessoa(Pessoa* p1, Pessoa* p2, int campo) {
             return p1->id == p2->id;
             break;
         case 2: // Nome
-            return strcmp(p1->nome, p2->nome);
+            int igual;
+            igual = strcmp(p1->nome, p2->nome);
+            if(igual == 0)
+                return 1;
+            else
+                return 0;
             break;
         case 3: // Peso
         	return p1->peso == p2->peso;
     		break;
-    	case 4:
+    	case 4: // Idade
     		return p1->idade == p2->idade;
     		break;
     	default:
