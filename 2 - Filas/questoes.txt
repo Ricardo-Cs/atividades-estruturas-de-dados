@@ -1,0 +1,4 @@
+﻿1 - Função/Procedimento buscar na fila;
+2 - Função/Procedimento alterar dados de uma estrutura em um nó na Fila;
+3 - Função/Procedimento para comparar se foram identificados repetições de matrícula nos nós da Fila e/ou de id;
+4 - Implementar no código um campo id na estrutura aluno do tipo auto incrementável, não informado pelo usuário (id iniciará em 1);
