@@ -85,7 +85,7 @@ int main (int argc, char* argv[]) {
                 					alunoEncontrado = 1;
                 					break;
             					}		
-            				atual = atual->prox;
+            					atual = atual->prox;
         				}	
         				if (!alunoEncontrado) {
             					printf("\n\nAluno com ID %d não encontrado na fila.\n", id);
