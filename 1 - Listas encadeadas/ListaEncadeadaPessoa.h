@@ -134,35 +134,49 @@ int compararPessoa(Pessoa* p1, Pessoa* p2, int campo) {
 	}
 }
 
-//função ordenarLista() - Ordem crescente.
+// Função ordenarLista() - Crescente
 Pessoa* ordenarLista(Pessoa* lista) {
     if (lista == NULL || lista->prox == NULL) {
-        return lista;
+        return lista; // Lista vazia ou com apenas um elemento já está ordenada
     }
-    Pessoa* novaLista = NULL;
 
-    while (lista != NULL) {
-        Pessoa* menor = lista;
-        Pessoa* anterior = NULL;
-        Pessoa* atual = lista;
-        while (atual->prox != NULL) {
-            if (atual->prox->id < menor->id) {
-                menor = atual->prox;
-                anterior = atual;
+    Pessoa* atual = lista;
+
+    while (atual != NULL) {
+        Pessoa* menor = atual;
+        Pessoa* aux = atual->prox;
+
+        while (aux != NULL) {
+            if (aux->id < menor->id) {
+                menor = aux;
             }
-            atual = atual->prox;
+            aux = aux->prox;
         }
-        if (anterior != NULL) {
-            anterior->prox = menor->prox;
-        } else {
-            lista = lista->prox;
+
+        if (menor != atual) {
+            int tempId = atual->id;
+            atual->id = menor->id;
+            menor->id = tempId;
+
+            char tempNome[80];
+            strcpy(tempNome, atual->nome);
+            strcpy(atual->nome, menor->nome);
+            strcpy(menor->nome, tempNome);
+
+            float tempPeso = atual->peso;
+            atual->peso = menor->peso;
+            menor->peso = tempPeso;
+
+            int tempIdade = atual->idade;
+            atual->idade = menor->idade;
+            menor->idade = tempIdade;
         }
-        menor->prox = novaLista;
-        novaLista = menor;
+
+        atual = atual->prox;
     }
 
-    return novaLista;
-}//Fim da função ordenarLista()
+    return lista;
+}//Fim Função ordenarLista()
 
 //Função editarRegistro()
 void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int novaIdade) {
