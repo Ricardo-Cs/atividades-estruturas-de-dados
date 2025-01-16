@@ -5,22 +5,24 @@
 #include "Fila.h"
 #include "menus.h"
 
-//InÌcio da main()
+//In√≠cio da main()
 int main (int argc, char* argv[]) {
 	system ("cls");
 	setlocale (LC_ALL, "Portuguese");
 	Fila fila;
-	int opcao;
+	int opcao, id, matricula, codCurso, idade;
+	char nome[MAX], tipoCurso[MAX];
+	float coefMediaGeral;
 	inicializarFila(&fila);
 	printf ("\n\n\nEste programa manipula uma fila de cadastros de alunos!");
 	clear();
 	
-	//LaÁo principal do programa
+	//La√ßo principal do programa
 	do {
 		system ("cls");
 		opcao = menu();
 		
-		//InÌcio switch()
+		//In√≠cio switch()
 		switch (opcao) {
 			case 1:
 				system ("cls");
@@ -30,9 +32,9 @@ int main (int argc, char* argv[]) {
 				printf ("\n\n\nInforme o nome do aluno: ");
 				fgets(aluno.nome, MAX, stdin);
 				aluno.nome[strcspn(aluno.nome, "\n")] = '\0';
-				printf ("\n\nInforme a matrÌcula do aluno: ");
+				printf ("\n\nInforme a matr√≠cula do aluno: ");
 				scanf ("%d", &aluno.matricula);
-				printf ("\n\nInforme o cÛdigo do curso do aluno: ");
+				printf ("\n\nInforme o c√≥digo do curso do aluno: ");
 				scanf ("%d", &aluno.codCurso);
 				fflush(stdin);
 				printf ("\n\nInforme o tipo do curso do aluno: ");
@@ -42,40 +44,66 @@ int main (int argc, char* argv[]) {
 				scanf ("%d", &aluno.idade);
 				printf ("\n\nInforme o coeficiente de aproveitamento do aluno: ");
 				scanf ("%f", &aluno.coefMediaGeral);
-				//Chamada da funÁ„o
+				//Chamada da fun√ß√£o
 				enfileirar(&fila, aluno);
 				clear();
 				break;
 			
 			case 2:
 				system ("cls");
-				printf ("\n\n\nOpÁ„o Desenfileirar Cadastro de Aluno");
+				printf ("\n\n\nOp√ß√£o Desenfileirar Cadastro de Aluno");
 				if (!filaVazia(&fila)) {
 					Aluno removido = desenfileirar(&fila);
 					printf ("\n\n\nNome do aluno desenfileirado: %s.\n\n", removido.nome);
 				}
 				else
-					printf ("\n\n\nA fila de cadastros de alunos est· vazia!\n\n");
+					printf ("\n\n\nA fila de cadastros de alunos est√° vazia!\n\n");
 				clear();
 				break;
 			
 			case 3:
 				system ("cls");
-				printf ("\n\n\nOpÁ„o Exibir Fila de Cadastros de Alunos");
+				printf ("\n\n\nOp√ß√£o Exibir Fila de Cadastros de Alunos");
 				exibirFila(&fila);
 				clear();
 				break;
+
+			case 4:
+				system ("cls");
+    				printf("\n\n\nOp√ß√£o desejada - Alterar Dados de Aluno na Fila");
+   				if (filaVazia(&fila)) {
+    			  	printf("\n\nA fila est√° vazia! N√£o h√° dados para alterar.\n");
+			    	} else {
+       					printf("\n\nInforme o ID do aluno a ser alterado: ");
+        				scanf("%d", &id);
+        				printf("\n\nInforme o novo nome: ");
+        				scanf(" %[^\n]", nome);
+        				printf("\n\nInforme a nova matr√≠cula:");
+        				scanf("%d", &matricula);
+        				printf("\n\nInforme o novo c√≥digo do curso: ");
+       					scanf("%d", &codCurso);
+        				printf("\n\nInforme o novo tipo do curso: ");
+        				scanf(" %[^\n]", tipoCurso);
+        				printf("\n\nInforme a nova idade: ");
+        				scanf("%d", &idade);
+       		 			printf("\n\nInforme a nova m√©dia geral de notas: ");
+        				scanf("%f", &coefMediaGeral);
+        			
+        				alterarDadosAluno(&fila, id, nome, matricula, codCurso, tipoCurso, idade, coefMediaGeral);
+    				}
+    				clear();
+   				break;
 			
 			case 0:
 				system ("cls");
-				printf ("\n\n\nVocÍ optou em sair!\n\n");
+				printf ("\n\n\nVoc√™ optou em sair!\n\n");
 				break;
 			
 			default:
-				printf ("\n\n\nInforme uma opÁ„o v·lida!");	
+				printf ("\n\n\nInforme uma op√ß√£o v√°lida!");	
 		}//Fim switch()
 		
-	} while (opcao != 0); //Fim do laÁo principal do programa	
+	} while (opcao != 0); //Fim do la√ßo principal do programa	
 	
 	printf ("\n\n\nObrigado por utilizar nosso programa!\n\n");
 	system ("Pause");
