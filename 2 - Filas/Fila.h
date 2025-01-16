@@ -8,40 +8,40 @@ typedef struct {
 	int codCurso;
 	char tipoCurso[MAX];
 	int idade;
-	float coefMediaGeral; //MÈdia geral de todas as notas
+	float coefMediaGeral; //M√©dia geral de todas as notas
 } Aluno; //Fim da estrutura Aluno
 
 //Estrutura No da Fila
 typedef struct No {
 	Aluno aluno;
-	struct No* prox; //PrÛximo No da fila
+	struct No* prox; //Pr√≥ximo No da fila
 } No; //Fim da estrutura No
 
 //Estrutura da Fila
 typedef struct {
 	No* frente; //primeiro
-	No* tras; //˙ltimo
+	No* tras; //√∫ltimo
 } Fila;//Fim da estrutura Fila
 
-// Vari·vel global para controlar o autoIncrement do ID do aluno
+// Vari√°vel global para controlar o autoIncrement do ID do aluno
 int alunoId = 1;
 
 //Procedimento inicializarFila()
 void inicializarFila(Fila* fila) {
 	fila->frente = NULL; //primeiro
-	fila->tras = NULL; //˙ltimo
+	fila->tras = NULL; //√∫ltimo
 }//Fim do procedimento inicializarFila()
 
-//FunÁ„o filaVazia()
+//Fun√ß√£o filaVazia()
 int filaVazia (Fila* fila) {
 	return fila->frente == NULL;
-}//Fim da funÁ„o filaVazia()
+}//Fim da fun√ß√£o filaVazia()
 
 //Procedimento enfileirar()
 void enfileirar (Fila* fila, Aluno aluno) {
 	No* novoNo = (No*) malloc(sizeof(No));
 	if (novoNo == NULL) {
-		printf ("\n\nErro de alocaÁ„o de memÛria!\n\n");
+		printf ("\n\nErro de aloca√ß√£o de mem√≥ria!\n\n");
 		exit(1);
 	}
 	novoNo->aluno = aluno;
@@ -57,18 +57,18 @@ void enfileirar (Fila* fila, Aluno aluno) {
 		fila->tras->prox = novoNo;
 	}
 	
-	fila->tras = novoNo; //˙ltimo
+	fila->tras = novoNo; //√∫ltimo
 	printf ("\n\nNovo aluno enfileirado com sucesso!\n\n");
 }//Fim do procedimento enfileirar()
 
-//FunÁ„o desenfileirar()
+//Fun√ß√£o desenfileirar()
 Aluno desenfileirar (Fila* fila) {
 	if (filaVazia(fila)) {
-		printf ("\n\nA fila est· vazia!\n\n");
+		printf ("\n\nA fila est√° vazia!\n\n");
 		exit(1);
 	}
 	
-	No* temp = fila->frente; //EndereÁo do primeiro na fila
+	No* temp = fila->frente; //Endere√ßo do primeiro na fila
 	Aluno alunoRemovido = temp->aluno; //Dados do primeiro - struct
 	fila->frente = temp->prox;
 	
@@ -78,26 +78,63 @@ Aluno desenfileirar (Fila* fila) {
 	
 	free(temp);
 	return alunoRemovido;		
-}//Fim da funÁ„o desenfileirar()
+}//Fim da fun√ß√£o desenfileirar()
 
 //Procedimento exibirFila()
 void exibirFila(Fila* fila) {
 	if (filaVazia(fila)) {
-		printf ("\n\nA fila est· vazia!\n\n");
+		printf ("\n\nA fila est√° vazia!\n\n");
 		return;
 	}
 	
 	No* atual = fila->frente;
-	printf ("\n\n\nRelatÛrio da Fila");
+	printf ("\n\n\nRelat√≥rio da Fila");
 	while (atual != NULL) {
 		Aluno alunoAtual = atual->aluno;
 		printf ("\n\n\n\nID do Aluno: %d.", alunoAtual.id);
 		printf ("\n\nNome do aluno: %s.", alunoAtual.nome);
-		printf ("\n\nN˙mero da matrÌcula: %d.", alunoAtual.matricula);
-		printf ("\n\nCÛdigo do curso: %d.", alunoAtual.codCurso);
+		printf ("\n\nN√∫mero da matr√≠cula: %d.", alunoAtual.matricula);
+		printf ("\n\nC√≥digo do curso: %d.", alunoAtual.codCurso);
 		printf ("\n\nTipo do curso: %s.", alunoAtual.tipoCurso);
 		printf ("\n\nIdade: %d.", alunoAtual.idade);
-		printf ("\n\nMÈdia geral de notas: %.2f.", alunoAtual.coefMediaGeral);
+		printf ("\n\nM√©dia geral de notas: %.2f.", alunoAtual.coefMediaGeral);
 		atual = atual->prox;
 	}
 }//Fim do procedimento exibirFila()
+
+//Fun√ß√£o alterarDadosAluno()
+void alterarDadosAluno(Fila* fila, int id, char* novoNome, int novaMatricula, int novoCodCurso, char* novoTipoCurso, int novaIdade, float novoCoefMediaGeral) {
+    if (filaVazia(fila)) {
+        printf("\n\nA fila est√° vazia! N√£o h√° dados para alterar.\n");
+        return;
+    }
+
+    No* atual = fila->frente;
+    while (atual != NULL) {
+        if (atual->aluno.id == id) {
+        	
+            if (novoNome != NULL && strlen(novoNome) > 0) {
+                strcpy(atual->aluno.nome, novoNome);
+            }
+            if (novaMatricula > 0) {
+                atual->aluno.matricula = novaMatricula;
+            }
+            if (novoCodCurso > 0) {
+                atual->aluno.codCurso = novoCodCurso;
+            }
+            if (novoTipoCurso != NULL && strlen(novoTipoCurso) > 0) {
+                strcpy(atual->aluno.tipoCurso, novoTipoCurso);
+            }
+            if (novaIdade > 0) {
+                atual->aluno.idade = novaIdade;
+            }
+            if (novoCoefMediaGeral >= 0) {
+                atual->aluno.coefMediaGeral = novoCoefMediaGeral;
+            }
+
+            printf("\n\nDados do aluno atualizados com sucesso!\n");
+            return;
+        }
+        atual = atual->prox;
+    }
+}//Fim Fun√ß√£o alterarDadosAluno()
