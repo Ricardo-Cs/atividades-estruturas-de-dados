@@ -5,16 +5,17 @@ void clear (void) {
 	system ("cls");
 }//Fim do procedimento clear()
 
-//Função menu()
+//FunÃ§Ã£o menu()
 int menu(void) {
 	int op;
 	printf ("\n\n\n\tMenu");
 	printf ("\n\n1 - Enfileirar Cadastro de Aluno");
 	printf ("\n\n2 - Desenfileirar Cadastro de Aluno");
 	printf ("\n\n3 - Exibir Fila de Cadastros de Alunos");
+	printf ("\n\n4 - Alterar Cadastros de Alunos");
 	printf ("\n\n0 - Sair");
 	
-	printf ("\n\n\nInforme a opção desejada: ");
+	printf ("\n\n\nInforme a opÃ§Ã£o desejada: ");
 	scanf ("%d", &op);
 	return op;
-}//Fim da função menu()
+}//Fim da funÃ§Ã£o menu()
