@@ -1,0 +1,8 @@
+1 - Função buscarPilha
+2 - Função compararElementos - com base no código - utilizar o campo codLivro
+3 - Função para buscar repetição e "livros" na pilha
+  1. Verifica topo
+  2. Compara topo com os outros elementos
+  3. Decrementa topo
+  4. Compara topo com os outros elementos
+4 - Função para alterar valores de atributos de uma struct livro da pilha - após realizar a buscaPilha() ou buscarLivro()
