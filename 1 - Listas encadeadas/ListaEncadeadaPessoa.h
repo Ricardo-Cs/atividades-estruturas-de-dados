@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <locale.h>
-#include <stdlib.h>
-#include <string.h>
 // Struct - lista encadeada pessoa
 struct pessoa {
     int id;
@@ -13,19 +9,29 @@ struct pessoa {
 
 typedef struct pessoa Pessoa;
 
+// Variável global para controlar o autoIncrement do ID da pessoa
+int pessoaId = 1;
+
 // Função criarLista()
 Pessoa* criarLista() {
     return NULL;
-} // Fim da funçãoo criarLista()
+} // Fim da função criarLista()
 
 // Função inserirLista() - inserir um novo elemento na lista
 Pessoa* inserirLista(Pessoa* p, int novoId, char *novoNome, float novoPeso, int novaIdade) {
     Pessoa* novo = (Pessoa*)malloc(sizeof(Pessoa));
     if (novo == NULL) {
-        printf("Erro ao alocar mem�ria! N�o ser� poss�vel inserir novo elemento na lista!\n");
+        printf("Erro ao alocar memória! Não será possível inserir novo elemento na lista!\n");
         exit(1);
     }
-    novo->id = novoId;
+    
+    // ID MANUAL
+    // novo->id = novoId;
+    
+    // ESTRUTURA ID AutoIncrement
+    novo->id = pessoaId;
+    pessoaId++;
+    
     strcpy(novo->nome, novoNome);
     novo->peso = novoPeso;
     novo->idade = novaIdade;
@@ -45,6 +51,17 @@ void imprimirLista(Pessoa* p) {
     }
 } // Fim da função imprimirLista()
 
+int idExiste(Pessoa* lista, int id) {
+    Pessoa* atual = lista;
+    while (atual != NULL) {
+        if (atual->id == id) {
+            return 1; // ID já existe
+        }
+        atual = atual->prox;
+    }
+    return 0; // ID não existe
+}
+
 // Função buscaElemento()
 Pessoa* buscaElemento(Pessoa* p, int codBusca) {
     Pessoa* pe;
@@ -58,7 +75,7 @@ Pessoa* buscaElemento(Pessoa* p, int codBusca) {
 
 // Função listaVazia()
 int listaVazia(Pessoa* p) {
-    return p == NULL; //Verdadeiro ou falso direto
+    return p == NULL; // Verdadeiro ou falso direto
 } // Fim da listaVazia()
 
 // Função removerElemento()
@@ -71,12 +88,12 @@ Pessoa* removerElemento(Pessoa* p, int codBusca) {
         pe = pe->prox;
     }
 
-    // Lista est� vazia ou o elemento com codBusca n�o foi localizado
+    // Lista está vazia ou o elemento com codBusca não foi localizado
     if (pe == NULL)
         return p;
 
     // Elemento localizado na lista
-    if (ant == NULL) // Elemento removido � o "primeiro"
+    if (ant == NULL) // Elemento removido é o "primeiro"
         p = pe->prox;
     else
         ant->prox = pe->prox;
@@ -93,10 +110,46 @@ Pessoa* liberarLista(Pessoa* p) {
         free(pe);
         pe = p1;
     }
+    pessoaId = 1;
     return NULL;
 } // Fim da função liberarLista()
 
-// Função compararListas() - Compara��o com base no id
+// Função encontrarMeio()
+Pessoa* encontrarMeio(Pessoa* inicio, Pessoa* fim) {
+    if (inicio == NULL) return NULL;
+
+    Pessoa* lento = inicio;
+    Pessoa* rapido = inicio;
+
+    while (rapido != NULL && rapido->prox != NULL && lento != NULL) {
+        lento = lento->prox;
+        rapido = rapido->prox->prox;
+    }
+
+    return lento;
+} // Fim da função encontrarMeio()
+
+// Função de buscaBinária()
+Pessoa* buscaBinaria(Pessoa* lista, int id) {
+    Pessoa* inicio = lista;
+    Pessoa* fim = NULL;
+    while (inicio != fim) {
+        Pessoa* meio = encontrarMeio(inicio, fim);
+        if (meio == NULL) {
+            return NULL;
+        }
+        if (meio->id == id) {
+            return meio; 
+        } else if (meio->id < id) {
+            inicio = meio->prox; 
+        } else {
+            fim = meio;
+        }
+    }
+    return NULL; // Elemento não encontrado
+} // Fim da função buscaBinária()
+
+// Função compararListas() - Comparação com base no id
 int compararListas(Pessoa* p1, Pessoa* p2) {
     Pessoa* pe1 = p1;
     Pessoa* pe2 = p2;
@@ -176,9 +229,9 @@ Pessoa* ordenarLista(Pessoa* lista) {
     }
 
     return lista;
-}//Fim Função ordenarLista()
+} // Fim da função ordenarLista()
 
-//Função editarRegistro()
+// Função editarRegistro()
 void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int novaIdade) {
     Pessoa* p = buscaElemento(lista, id);
     if (p == NULL) {
@@ -196,4 +249,4 @@ void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int n
     }
 
     printf("\n\n\nRegistro com ID %d atualizado com sucesso.", id);
-}//Fim da função editarResgistro()
+} // Fim da função editarRegistro()
