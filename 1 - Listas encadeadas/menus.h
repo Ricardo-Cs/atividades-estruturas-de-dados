@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//Arquivo só com menus e strings
+//Arquivos com menus e strings
 
 //Procedimento menuPrincipal()
 void menuPrincipal (void) {
@@ -14,13 +14,14 @@ void menuPrincipal (void) {
 	printf ("\n\n6 - Ordenar Lista Encadeada");
 	printf ("\n\n7 - Editar Registro na Lista Encadeada");
 	printf ("\n\n8 - Comparar Registros");
+	printf ("\n\n9 - Verificar Repitições de ID na Lista Encadeada");
 	printf ("\n\n0 - Sair");
 }//Fim do procedimento menuPrincipal()
 
 int menuCompararRegistros (void) {
 	int op;
 	system ("cls");
-	printf ("\n\n\n\tMenu de Sele��o de Campo");
+	printf ("\n\n\n\tMenu de Seleção de Campo");
 	printf ("\n\n\n1 - ID");
 	printf ("\n\n2 - Nome");
 	printf ("\n\n3 - Peso");
