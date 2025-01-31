@@ -138,3 +138,36 @@ void alterarDadosAluno(Fila* fila, int id, char* novoNome, int novaMatricula, in
         atual = atual->prox;
     }
 }//Fim Função alterarDadosAluno()
+
+// Função para Verificar Repetições de Matrícula na Fila
+void verificarRepeticoesMatricula(Fila* fila) {
+   
+    if (fila->frente == NULL) {
+        printf("A fila está vazia. Não há matrículas para verificar.\n");
+        return;
+    }
+
+    No* atual = fila->frente;
+    int encontrado = 0; 
+
+    while (atual != NULL) {
+        No* comparador = atual->prox; 
+        while (comparador != NULL) {
+            if (atual->aluno.matricula == comparador->aluno.matricula) {
+                encontrado = 1; 
+                break; 
+            }
+            comparador = comparador->prox; 
+        }
+        if (encontrado) {
+            break; 
+        }
+        atual = atual->prox; 
+    }
+
+    if (encontrado) {
+        printf("\nRepetição de matrícula encontrada na fila.\n");
+    } else {
+        printf("\nNão há repetições de matrícula na fila.\n");
+    }
+} //Fim da Função verificarRepeticoesMatricula()
