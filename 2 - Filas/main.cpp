@@ -70,44 +70,50 @@ int main (int argc, char* argv[]) {
 
 			case 4:
 				system ("cls");
-    				printf("\n\n\nOpção desejada - Alterar Dados de Aluno na Fila");
-    				if (filaVazia(&fila)) {
-        			printf("\n\nA fila está vazia! Não há dados para alterar.\n");
-    				} else {
-        				printf("\n\nInforme o ID do aluno a ser alterado: ");
-        				scanf("%d", &id);
+				printf("\n\n\nOpção desejada - Alterar Dados de Aluno na Fila");
+				if (filaVazia(&fila)) {
+				printf("\n\nA fila está vazia! Não há dados para alterar.\n");
+				} else {
+					printf("\n\nInforme o ID do aluno a ser alterado: ");
+					scanf("%d", &id);
 
-       					// Verificar se o aluno com o ID existe
-        				No* atual = fila.frente;
-        				int alunoEncontrado = 0;
-        				while (atual != NULL) {
-            					if (atual->aluno.id == id) {
-                					alunoEncontrado = 1;
-                					break;
-            					}		
-            					atual = atual->prox;
-        				}	
-        				if (!alunoEncontrado) {
-            					printf("\n\nAluno com ID %d não encontrado na fila.\n", id);
-        				} else {
-            					printf("\n\nInforme o novo nome: ");
-           					scanf(" %[^\n]", nome);
-            					printf("\n\nInforme a nova matrícula: ");
-            					scanf("%d", &matricula);
-            					printf("\n\nInforme o novo código do curso: ");
-            					scanf("%d", &codCurso);
-            					printf("\n\nInforme o novo tipo do curso: ");
-            					scanf(" %[^\n]", tipoCurso);
-            					printf("\n\nInforme a nova idade: ");
-            					scanf("%d", &idade);
-            					printf("\n\nInforme a nova média geral de notas: ");
-            					scanf("%f", &coefMediaGeral);
-            
-            					alterarDadosAluno(&fila, id, nome, matricula, codCurso, tipoCurso, idade, coefMediaGeral);
-        				}
-    				}
+					// Verificar se o aluno com o ID existe
+					No* atual = fila.frente;
+					int alunoEncontrado = 0;
+					while (atual != NULL) {
+							if (atual->aluno.id == id) {
+								alunoEncontrado = 1;
+								break;
+							}		
+							atual = atual->prox;
+					}	
+					if (!alunoEncontrado) {
+							printf("\n\nAluno com ID %d não encontrado na fila.\n", id);
+					} else {
+							printf("\n\nInforme o novo nome: ");
+						scanf(" %[^\n]", nome);
+							printf("\n\nInforme a nova matrícula: ");
+							scanf("%d", &matricula);
+							printf("\n\nInforme o novo código do curso: ");
+							scanf("%d", &codCurso);
+							printf("\n\nInforme o novo tipo do curso: ");
+							scanf(" %[^\n]", tipoCurso);
+							printf("\n\nInforme a nova idade: ");
+							scanf("%d", &idade);
+							printf("\n\nInforme a nova média geral de notas: ");
+							scanf("%f", &coefMediaGeral);
+		
+							alterarDadosAluno(&fila, id, nome, matricula, codCurso, tipoCurso, idade, coefMediaGeral);
+					}
+				}
    				clear();
-		    		break;
+		    	break;
+			
+			case 5:
+		                system("cls");
+		                verificarRepeticoesMatricula(&fila);
+		                clear();
+               			break;
 			
 			case 0:
 				system ("cls");
