@@ -13,6 +13,7 @@ int menu(void) {
 	printf ("\n\n2 - Desenfileirar Cadastro de Aluno");
 	printf ("\n\n3 - Exibir Fila de Cadastros de Alunos");
 	printf ("\n\n4 - Alterar Cadastros de Alunos");
+	printf ("\n\n5 - Vericar Repetições de Matrículas de Alunos");	
 	printf ("\n\n0 - Sair");
 	
 	printf ("\n\n\nInforme a opção desejada: ");
