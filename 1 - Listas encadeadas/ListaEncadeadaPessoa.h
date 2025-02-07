@@ -1,13 +1,19 @@
+#define MAX_LISTAS 10
+
 // Struct - lista encadeada pessoa
-struct pessoa {
+typedef struct pessoa {
     int id;
     char nome[80];
     float peso;
     int idade;
     struct pessoa* prox;
-}; // Fim da struct pessoa
+} Pessoa; // Fim da struct pessoa
 
-typedef struct pessoa Pessoa;
+typedef struct {
+    char nome[80];
+    int idCount; // Controlador de ID de cada lista
+    Pessoa* pessoa;
+} ListaPessoas;
 
 // Variável global para controlar o autoIncrement do ID da pessoa
 int pessoaId = 1;
@@ -17,8 +23,28 @@ Pessoa* criarLista() {
     return NULL;
 } // Fim da função criarLista()
 
+void iniciarListaPessoas(ListaPessoas* listaPessoas[], int qtd_listas) {
+    for (int i = 0; i < qtd_listas; i++) {
+        // Aloca mem�ria para cada lista individualmente
+        listaPessoas[i] = (ListaPessoas*) malloc(sizeof(ListaPessoas));
+        if (listaPessoas[i] == NULL) {
+            printf("Erro ao alocar mem�ria!\n");
+            exit(1);
+        }
+
+        // Solicita o nome da lista
+        printf("\n\nInforme o nome da Lista %d: ", i + 1);
+        scanf(" %[^\n]s", listaPessoas[i]->nome);
+
+        // Inicializa a lista como vazia
+        listaPessoas[i]->pessoa = NULL;
+        listaPessoas[i]->idCount = 1;
+    }
+}
+
+
 // Função inserirLista() - inserir um novo elemento na lista
-Pessoa* inserirLista(Pessoa* p, int novoId, char *novoNome, float novoPeso, int novaIdade) {
+Pessoa* inserirLista(Pessoa* p, int* novoId, char *novoNome, float novoPeso, int novaIdade) {
     Pessoa* novo = (Pessoa*)malloc(sizeof(Pessoa));
     if (novo == NULL) {
         printf("Erro ao alocar memória! Não será possível inserir novo elemento na lista!\n");
@@ -29,8 +55,8 @@ Pessoa* inserirLista(Pessoa* p, int novoId, char *novoNome, float novoPeso, int 
     // novo->id = novoId;
     
     // ESTRUTURA ID AutoIncrement
-    novo->id = pessoaId;
-    pessoaId++;
+    novo->id = *novoId;
+    (*novoId)++;
     
     strcpy(novo->nome, novoNome);
     novo->peso = novoPeso;
@@ -162,29 +188,68 @@ int compararListas(Pessoa* p1, Pessoa* p2) {
     return pe1 == pe2; // NULL == NULL
 } // Fim da função compararListas()
 
-int compararPessoa(Pessoa* p1, Pessoa* p2, int campo) {
-    switch(campo) {
-        case 1: // ID
-            return p1->id == p2->id;
+int compararPessoa(Pessoa* lista, int campo) {
+    int contador = 0;
+    Pessoa* atual = lista;
+
+    switch (campo) {
+        case 1: { // Buscar por ID
+            int id;
+            printf("\n\nInforme o ID que deseja buscar: ");
+            scanf("%d", &id);
+            while (atual != NULL) {
+                if (atual->id == id) {
+                    contador++;
+                }
+                atual = atual->prox;
+            }
             break;
-        case 2: // Nome
-            int igual;
-            igual = strcmp(p1->nome, p2->nome);
-            if(igual == 0)
-                return 1;
-            else
-                return 0;
+        }
+        case 2: { // Buscar por Nome
+            char nome[80];
+            printf("\n\nInforme o nome que deseja buscar: ");
+            scanf(" %[^\n]s", nome);
+            while (atual != NULL) {
+                if (strcmp(atual->nome, nome) == 0) {
+                    contador++;
+                    printf("\n\nNome encontrado no registro com ID %d", atual->id);
+                }
+                atual = atual->prox;
+            }
             break;
-        case 3: // Peso
-        	return p1->peso == p2->peso;
-    		break;
-    	case 4: // Idade
-    		return p1->idade == p2->idade;
-    		break;
-    	default:
-    		return 0;
-    		break;
-	}
+        }
+        case 3: { // Buscar por Peso
+            float peso;
+            printf("\n\nInforme o peso que deseja buscar: ");
+            scanf("%f", &peso);
+            while (atual != NULL) {
+                if (atual->peso == peso) {
+                    contador++;
+                    printf("\n\nPeso encontrado no registro com ID %d", atual->id);
+                }
+                atual = atual->prox;
+            }
+            break;
+        }
+        case 4: { // Buscar por Idade
+            int idade;
+            printf("\n\nInforme a idade que deseja buscar: ");
+            scanf("%d", &idade);
+            while (atual != NULL) {
+                if (atual->idade == idade) {
+                    contador++;
+                    printf("\n\nIdade encontrada no registro com ID %d", atual->id);
+                }
+                atual = atual->prox;
+            }
+            break;
+        }
+        default:
+            return -1; // Retorna -1 para indicar erro
+    }
+
+    // printf("\n\nQuantidade de registros encontrados: %d\n", contador);
+    return contador;
 }
 
 // Função ordenarLista() - Crescente
@@ -250,3 +315,16 @@ void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int n
 
     printf("\n\n\nRegistro com ID %d atualizado com sucesso.", id);
 } // Fim da função editarRegistro()
+
+int listasVazias(ListaPessoas* listas, int qtd_listas) {
+    for (int i = 0; i < qtd_listas; i++) {
+        if (listas->pessoa != NULL) {
+            return 0;  // Se encontrar uma lista n�o nula, retorna false
+        }
+    }
+    return 1;  // Se todas as listas forem nulas, retorna true
+}
+
+void novaLista(char nomeLista[80]) {
+	
+}

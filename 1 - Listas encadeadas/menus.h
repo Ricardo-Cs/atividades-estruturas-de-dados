@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 //Arquivos com menus e strings
 
 //Procedimento menuPrincipal()
@@ -18,10 +16,10 @@ void menuPrincipal (void) {
 	printf ("\n\n0 - Sair");
 }//Fim do procedimento menuPrincipal()
 
-int menuCompararRegistros (void) {
+int menuCampo (void) {
 	int op;
 	system ("cls");
-	printf ("\n\n\n\tMenu de SeleÃ§Ã£o de Campo");
+	printf ("\n\n\n\tMenu de Seleção de Campo");
 	printf ("\n\n\n1 - ID");
 	printf ("\n\n2 - Nome");
 	printf ("\n\n3 - Peso");
@@ -30,6 +28,31 @@ int menuCompararRegistros (void) {
 	scanf("%d", &op);
 	return op;
 }
+
+int menuListas(ListaPessoas* listaPessoas[], int qtd_listas) {    
+    int n;
+
+    printf("\n\n\tListas disponíveis\n\n");
+    for (int i = 0; i < qtd_listas; i++) {
+        if (listaPessoas[i] != NULL) {  // Verifica se a lista foi inicializada
+            printf("\n%d - %s", i + 1, listaPessoas[i]->nome);
+        } else {
+            printf("\n%d - [Lista não inicializada]", i + 1);
+        }
+    }
+
+    do {
+        printf("\n\nEscolha a lista (1-%d): ", qtd_listas);
+        scanf("%d", &n);
+
+        if (n < 1 || n > qtd_listas || listaPessoas[n - 1] == NULL) {
+            printf("Opção inválida! Escolha um número entre 1 e %d.\n", qtd_listas);
+        }
+    } while (n < 1 || n > qtd_listas || listaPessoas[n - 1] == NULL);
+	system("cls");
+    return n - 1;
+}
+
 
 //Procedimento clear()
 void clear (void) {
