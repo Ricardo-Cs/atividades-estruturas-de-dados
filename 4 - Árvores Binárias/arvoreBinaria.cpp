@@ -100,6 +100,13 @@ void perPreOrdem(no *raiz) {
     perPreOrdem(raiz->direita);
 } // Fim do procedimento perPreOrdem()
 
+void buscarNo(no *raiz, int valorBusca) {
+	int valor = raiz->chave;
+	while(valor != valorBusca) {
+		
+	} 
+}
+
 // Início main()
 int main(void) {
     system("cls");
@@ -163,6 +170,11 @@ int main(void) {
                         printf("\n\nInforme uma opção válida!");
                 } // Fim do switch()
                 break;
+            
+            case 4: 
+            	buscarNo(raiz);
+            	system("pause");
+            	break;
             
             case 0:
                 printf("\n\nVocê optou por encerrar o programa!");

@@ -9,44 +9,46 @@ void clear(void) {
     system("cls");
 } // Fim clear()
 
-// Fun√ß√£o menuPrincipal()
+// FunÁ„o menuPrincipal()
 int menuPrincipal(void) {
     int op;
     system("cls");
     printf("\n\n\tMenu");
-    printf("\n\n1 - Inserir Elemento na √Årvore Bin√°ria");
-    printf("\n\n2 - Excluir Elemento da √Årvore Bin√°ria");
-    printf("\n\n3 - Percorrer/Exibir √Årvore Bin√°ria");
+    printf("\n\n1 - Inserir Elemento na ¡rvore Bin·ria");
+    printf("\n\n2 - Excluir Elemento da ¡rvore Bin·ria");
+    printf("\n\n3 - Percorrer/Exibir ¡rvore Bin·ria");
+    printf("\n\n4 - Buscar NÛ na ¡rvore Bin·ria");
     printf("\n\n0 - Sair");
-    printf("\n\n\nInforme a op√ß√£o desejada: ");
+    printf("\n\n\nInforme a opÁ„o desejada: ");
     scanf("%d", &op);
     
-    if (op == 1 || op == 2 || op == 3 || op == 0)
+    if (op == 1 || op == 2 || op == 3 || op == 4 || op == 0)
         return op;
     else {
-        printf("\n\n\nInforme uma op√ß√£o v√°lida!");
+        printf("\n\n\nInforme uma opÁ„o v·lida!");
         clear();
         return menuPrincipal();
     }
-} // Fim da fun√ß√£o menuPrincipal()
+} // Fim da funÁ„o menuPrincipal()
 
-// Fun√ß√£o menuTravessia()
+// FunÁ„o menuTravessia()
 int menuTravessia(void) {
     int op;
     system("cls");
-    printf("\n\n\tMenu - Percorrer/Exibir √Årvore Bin√°ria");
-    printf("\n\n1 - Percorrer/Exibir √Årvore Bin√°ria por Ordem Sim√©trica");
-    printf("\n\n2 - Percorrer/Exibir √Årvore Bin√°ria P√≥s-Ordem");
-    printf("\n\n3 - Percorrer/Exibir √Årvore Bin√°ria Pr√©-Ordem");
+    printf("\n\n\tMenu - Percorrer/Exibir ¡rvore Bin·ria");
+    printf("\n\n1 - Percorrer/Exibir ¡rvore Bin·ria por Ordem SimÈtrica");
+    printf("\n\n2 - Percorrer/Exibir ¡rvore Bin·ria PÛs-Ordem");
+    printf("\n\n3 - Percorrer/Exibir ¡rvore Bin·ria PrÈ-Ordem");
     printf("\n\n0 - Voltar ao Menu Principal");
-    printf("\n\n\nInforme a op√ß√£o desejada: ");
+    printf("\n\n\nInforme a opÁ„o desejada: ");
     scanf("%d", &op);
     
     if (op == 1 || op == 2 || op == 3 || op == 0)
         return op;
     else {
-        printf("\n\n\nInforme uma op√ß√£o v√°lida!");
+        printf("\n\n\nInforme uma opÁ„o v·lida!");
         clear();
         return menuTravessia();
     }
-} // Fim da fun√ß√£o menuTravessia()
+} // Fim da funÁ„o menuTravessia()
+
