@@ -10,6 +10,9 @@ typedef struct no {
     struct no *direita;
 } no; // Fim da estrutura nÃ³
 
+// Variável para controlar os valores percorridos na função buscarNo()
+int primeiroValor = 1;
+
 // Procedimento inserirNo()
 void inserirNo(no **raiz, int elemento) {
     if (*raiz == NULL) { // 1Âº Caso - Inserindo nÃ³ raiz
@@ -100,11 +103,36 @@ void perPreOrdem(no *raiz) {
     perPreOrdem(raiz->direita);
 } // Fim do procedimento perPreOrdem()
 
-void buscarNo(no *raiz, int valorBusca) {
-	int valor = raiz->chave;
-	while(valor != valorBusca) {
-		
-	} 
+// Função para buscar nó na árvore (recursiva).
+int noEncontrado(no* raiz, int valor) {
+    if (raiz == NULL) {
+        return 0;
+    }
+    
+    if (raiz->chave == valor) {
+        return 1;
+    } 
+    
+    // Operador Ternário
+    return (valor < raiz->chave) ? noEncontrado(raiz->esquerda, valor) : noEncontrado(raiz->direita, valor);
+}
+
+void percorrerArvore(no *raiz, int valor) {
+    if (raiz == NULL) {
+        return;
+    }
+    
+    if (raiz->chave == valor) {
+        return;
+    }
+    
+    printf("\n%d", raiz->chave);
+    
+    if (valor < raiz->chave) {
+        percorrerArvore(raiz->esquerda, valor);
+    } else {
+        percorrerArvore(raiz->direita, valor);
+    }
 }
 
 // InÃ­cio main()
@@ -172,7 +200,25 @@ int main(void) {
                 break;
             
             case 4: 
-            	buscarNo(raiz);
+            	int chaveBusca;
+				printf("\n\nInforme o valor que deseja buscar: ");
+            	scanf("%d", &chaveBusca);
+            	
+            	if (raiz == NULL) {
+            		printf("\n\nA Árvore está vazia!\n\n");
+            		system("pause");
+            		break;
+				}
+            	
+				if (raiz->chave == chaveBusca) {
+					printf("\n\nNó encontrado! O valor informado é a raiz da árvore!");
+				} else if (noEncontrado(raiz, chaveBusca)) {
+					printf("\n\nNó encontrado na Árvore!\n\nValores Percorridos: ");
+					percorrerArvore(raiz, chaveBusca);
+				} else
+					printf("\n\nNó não encontrado na Árvore!");
+
+				printf("\n\n");	
             	system("pause");
             	break;
             
