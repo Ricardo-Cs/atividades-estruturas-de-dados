@@ -12,31 +12,31 @@ int main(int argc, char* argv[]) {
     char nome[80];
     float peso;
 
-    printf("\n\n\nEste programa controla o cadastro de pessoas através de n listas encadeadas!");
+    printf("\n\n\nEste programa controla o cadastro de pessoas atravÃ©s de n listas encadeadas!");
     printf("\n\n\nInforme a quantidade de Listas Encadeadas: ");
     scanf("%d", &qtd_listas);
     clear();
 
-    // Alocação dinâmica para evitar estouro de memória
+    // AlocaÃ§Ã£o dinamica para evitar estouro de memoria
     ListaPessoas** listaPessoas = (ListaPessoas**) malloc(qtd_listas * sizeof(ListaPessoas*));
     if (listaPessoas == NULL) {
-        printf("Erro ao alocar memória para as listas!\n");
+        printf("Erro ao alocar memoria para as listas!\n");
         return 1;
     }
 
     iniciarListaPessoas(listaPessoas, qtd_listas);
     clear();
 
-    // Laço do menu principal
+    // LaÃ§o do menu principal
     do {
         menuPrincipal();
-        printf("\n\n\nEscolha uma opção: ");
+        printf("\n\n\nEscolha uma opcao: ");
         scanf("%d", &opcao);
         clear();
 
         switch (opcao) {
             case 1: // Inserir novo registro
-                printf("\n\n\nOpção desejada - Inserir Registro em Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Inserir Registro em Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 printf("\n\nInforme o nome: ");
                 scanf(" %[^\n]s", nome);
@@ -50,10 +50,10 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 2: // Imprimir lista encadeada
-                printf("\n\n\nOpção desejada - Listar Todos os Registros de Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Listar Todos os Registros de Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 if (listaVazia(listaPessoas[num_lista]->pessoa)) {
-                    printf("\n\nImpossível imprimir! A lista está vazia!\n");
+                    printf("\n\nImpossÃ­vel imprimir! A lista esta vazia!\n");
                 } else {
                     printf("\n\n\tRegistros cadastrados na lista encadeada:\n\n");
                     imprimirLista(listaPessoas[num_lista]->pessoa);
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 3: // Buscar elemento na lista encadeada
-                printf("\n\n\nOpção desejada - Buscar Elemento em Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Buscar Elemento em Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 printf("\n\nInforme o ID para buscar na lista encadeada: ");
                 scanf("%d", &id);
@@ -75,15 +75,15 @@ int main(int argc, char* argv[]) {
                     printf("\n\nPeso: %.2f kg", encontrada->peso);
                     printf("\n\nIdade: %d anos completos", encontrada->idade);
                 } else {
-                    printf("\n\nPessoa com Id %d não encontrada na lista encadeada!", id);
+                    printf("\n\nPessoa com Id %d nÃ£o encontrada na lista encadeada!", id);
                 }
                 clear();
                 break;
 
             case 4: // Remover elemento da lista encadeada
-                printf("\n\n\nOpção desejada - Remover Registro de Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Remover Registro de Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
-                printf("\n\nInforme o ID para remoção da lista encadeada: ");
+                printf("\n\nInforme o ID para remocao da lista encadeada: ");
                 scanf("%d", &id);
                 listaPessoas[num_lista]->pessoa = removerElemento(listaPessoas[num_lista]->pessoa, id);
                 printf("\n\n\nCaso estivesse na lista, o registro foi removido com sucesso!");
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 5: // Liberar lista encadeada
-                printf("\n\n\nOpção desejada - Liberar Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Liberar Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 listaPessoas[num_lista]->pessoa = liberarLista(listaPessoas[num_lista]->pessoa);
                 listaPessoas[num_lista]->idCount = 1; // Reseta o id
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 6: // Ordenar lista encadeada
-                printf("\n\n\nOpção desejada - Ordenar Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Ordenar Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 listaPessoas[num_lista]->pessoa = ordenarLista(listaPessoas[num_lista]->pessoa);
                 printf("\n\nLista encadeada ordenada com sucesso!\n");
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 7: // Editar registro na lista encadeada
-                printf("\n\n\nOpção desejada - Editar Registro na Lista Encadeada");
+                printf("\n\n\nOpcao desejada - Editar Registro na Lista Encadeada");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 printf("\n\nInforme o ID do registro a ser editado: ");
                 scanf("%d", &id);
@@ -124,7 +124,7 @@ int main(int argc, char* argv[]) {
 
 	    	case 8:
 	    		int campo, registros;
-	    		printf("\n\n\nOpção desejada - Comparar Registros");
+	    		printf("\n\n\nOpcao desejada - Comparar Registros");
 	    		num_lista = menuListas(listaPessoas, qtd_listas);
 	    		campo = menuCampo();
 	    		clear();
@@ -133,34 +133,34 @@ int main(int argc, char* argv[]) {
                 if(registros >= 0)
                     printf("\n\n\nQuantidade de registros encontrados: %d", registros);
                 else   
-                    printf("\n\nValor inválido! Tente Novamente.");
+                    printf("\n\nValor invalido! Tente Novamente.");
 				
 				clear();
 				break;
 
-            case 9: // Verificar repetições de ID
-                printf("\n\n\nOpção desejada - Verificar Repetições de ID");
+            case 9: // Verificar repetiÃ§Ãµes de ID
+                printf("\n\n\nOpcao desejada - Verificar Repeticoes de ID");
                 num_lista = menuListas(listaPessoas, qtd_listas);
                 if (idExiste(listaPessoas[num_lista]->pessoa, id)) {
                     printf("\n\nExistem IDs repetidos na lista.\n");
                 } else {
-                    printf("\n\nNão existem IDs repetidos na lista.\n");
+                    printf("\n\nNao existem IDs repetidos na lista.\n");
                 }
                 clear();
                 break;
 
             case 0: // Sair do programa
-                printf("\n\n\tVocê optou em sair do programa!");
+                printf("\n\n\tVoce optou em sair do programa!");
                 clear();
                 break;
 
             default:
-                printf("\n\n\nOpção inválida! Informe uma opção válida!");
+                printf("\n\n\nOpcao invalida! Informe uma opcao valida!");
                 clear();
         }
     } while (opcao != 0);
 
-    // Liberação de memória antes de sair. Verifica se lista é NULL antes de liberar
+    // LiberaÃ§Ã£o de memoria antes de sair. Verifica se lista e NULL antes de liberar
 	for (int i = 0; i < qtd_listas; i++) {
 	    if (listaPessoas[i] != NULL) {
 	        listaPessoas[i]->pessoa = liberarLista(listaPessoas[i]->pessoa);
@@ -173,4 +173,3 @@ int main(int argc, char* argv[]) {
     system("Pause");
     return 0;
 }
-
