@@ -15,20 +15,20 @@ typedef struct {
     Pessoa* pessoa;
 } ListaPessoas;
 
-// Variável global para controlar o autoIncrement do ID da pessoa
+// Variavel global para controlar o autoIncrement do ID da pessoa
 int pessoaId = 1;
 
-// Função criarLista()
+// Funcao criarLista()
 Pessoa* criarLista() {
     return NULL;
-} // Fim da função criarLista()
+} // Fim da Funcao criarLista()
 
 void iniciarListaPessoas(ListaPessoas* listaPessoas[], int qtd_listas) {
     for (int i = 0; i < qtd_listas; i++) {
-        // Aloca mem�ria para cada lista individualmente
+        // Aloca memoria para cada lista individualmente
         listaPessoas[i] = (ListaPessoas*) malloc(sizeof(ListaPessoas));
         if (listaPessoas[i] == NULL) {
-            printf("Erro ao alocar mem�ria!\n");
+            printf("Erro ao alocar memoria!\n");
             exit(1);
         }
 
@@ -43,11 +43,11 @@ void iniciarListaPessoas(ListaPessoas* listaPessoas[], int qtd_listas) {
 }
 
 
-// Função inserirLista() - inserir um novo elemento na lista
+// Funcao inserirLista() - inserir um novo elemento na lista
 Pessoa* inserirLista(Pessoa* p, int* novoId, char *novoNome, float novoPeso, int novaIdade) {
     Pessoa* novo = (Pessoa*)malloc(sizeof(Pessoa));
     if (novo == NULL) {
-        printf("Erro ao alocar memória! Não será possível inserir novo elemento na lista!\n");
+        printf("Erro ao alocar memoria! Nao sera possivel inserir novo elemento na lista!\n");
         exit(1);
     }
     
@@ -63,7 +63,7 @@ Pessoa* inserirLista(Pessoa* p, int* novoId, char *novoNome, float novoPeso, int
     novo->idade = novaIdade;
     novo->prox = p;
     return novo;
-} // Fim da função inserirLista()
+} // Fim da Funcao inserirLista()
 
 // Procedimento imprimirLista()
 void imprimirLista(Pessoa* p) {
@@ -75,20 +75,20 @@ void imprimirLista(Pessoa* p) {
         printf("\nPeso da pessoa (kg): %.2f", pe->peso);
         printf("\nIdade da pessoa (anos completos): %d", pe->idade);
     }
-} // Fim da função imprimirLista()
+} // Fim da Funcao imprimirLista()
 
 int idExiste(Pessoa* lista, int id) {
     Pessoa* atual = lista;
     while (atual != NULL) {
         if (atual->id == id) {
-            return 1; // ID já existe
+            return 1; // ID ja existe
         }
         atual = atual->prox;
     }
-    return 0; // ID não existe
+    return 0; // ID nao existe
 }
 
-// Função buscaElemento()
+// Funcao buscaElemento()
 Pessoa* buscaElemento(Pessoa* p, int codBusca) {
     Pessoa* pe;
     for (pe = p; pe != NULL; pe = pe->prox) {
@@ -97,14 +97,14 @@ Pessoa* buscaElemento(Pessoa* p, int codBusca) {
         }
     }
     return NULL;
-} // Fim da função buscaElemento()
+} // Fim da Funcao buscaElemento()
 
-// Função listaVazia()
+// Funcao listaVazia()
 int listaVazia(Pessoa* p) {
     return p == NULL; // Verdadeiro ou falso direto
 } // Fim da listaVazia()
 
-// Função removerElemento()
+// Funcao removerElemento()
 Pessoa* removerElemento(Pessoa* p, int codBusca) {
     Pessoa* pe = p;
     Pessoa* ant = NULL;
@@ -114,21 +114,21 @@ Pessoa* removerElemento(Pessoa* p, int codBusca) {
         pe = pe->prox;
     }
 
-    // Lista está vazia ou o elemento com codBusca não foi localizado
+    // Lista esta vazia ou o elemento com codBusca nao foi localizado
     if (pe == NULL)
         return p;
 
     // Elemento localizado na lista
-    if (ant == NULL) // Elemento removido é o "primeiro"
+    if (ant == NULL) // Elemento removido Ã© o "primeiro"
         p = pe->prox;
     else
         ant->prox = pe->prox;
 
     free(pe);
     return p;
-} // Fim da função removerElemento()
+} // Fim da Funcao removerElemento()
 
-// Função liberarLista()
+// Funcao liberarLista()
 Pessoa* liberarLista(Pessoa* p) {
     Pessoa* pe = p;
     while (pe != NULL) {
@@ -138,9 +138,9 @@ Pessoa* liberarLista(Pessoa* p) {
     }
     pessoaId = 1;
     return NULL;
-} // Fim da função liberarLista()
+} // Fim da Funcao liberarLista()
 
-// Função encontrarMeio()
+// Funcao encontrarMeio()
 Pessoa* encontrarMeio(Pessoa* inicio, Pessoa* fim) {
     if (inicio == NULL) return NULL;
 
@@ -153,9 +153,9 @@ Pessoa* encontrarMeio(Pessoa* inicio, Pessoa* fim) {
     }
 
     return lento;
-} // Fim da função encontrarMeio()
+} // Fim da Funcao encontrarMeio()
 
-// Função de buscaBinária()
+// Funcao de buscaBinaria()
 Pessoa* buscaBinaria(Pessoa* lista, int id) {
     Pessoa* inicio = lista;
     Pessoa* fim = NULL;
@@ -172,10 +172,10 @@ Pessoa* buscaBinaria(Pessoa* lista, int id) {
             fim = meio;
         }
     }
-    return NULL; // Elemento não encontrado
-} // Fim da função buscaBinária()
+    return NULL; // Elemento nao encontrado
+} // Fim da Funcao buscaBinaria()
 
-// Função compararListas() - Comparação com base no id
+// Funcao compararListas() - Comparacao com base no id
 int compararListas(Pessoa* p1, Pessoa* p2) {
     Pessoa* pe1 = p1;
     Pessoa* pe2 = p2;
@@ -186,7 +186,7 @@ int compararListas(Pessoa* p1, Pessoa* p2) {
         pe2 = pe2->prox;
     }
     return pe1 == pe2; // NULL == NULL
-} // Fim da função compararListas()
+} // Fim da Funcao compararListas()
 
 int compararPessoa(Pessoa* lista, int campo) {
     int contador = 0;
@@ -252,10 +252,10 @@ int compararPessoa(Pessoa* lista, int campo) {
     return contador;
 }
 
-// Função ordenarLista() - Crescente
+// Funcao ordenarLista() - Crescente
 Pessoa* ordenarLista(Pessoa* lista) {
     if (lista == NULL || lista->prox == NULL) {
-        return lista; // Lista vazia ou com apenas um elemento já está ordenada
+        return lista; // Lista vazia ou com apenas um elemento ja esta ordenada
     }
 
     Pessoa* atual = lista;
@@ -294,13 +294,13 @@ Pessoa* ordenarLista(Pessoa* lista) {
     }
 
     return lista;
-} // Fim da função ordenarLista()
+} // Fim da Funcao ordenarLista()
 
-// Função editarRegistro()
+// Funcao editarRegistro()
 void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int novaIdade) {
     Pessoa* p = buscaElemento(lista, id);
     if (p == NULL) {
-        printf("\n\n\nRegistro com ID %d não encontrado.", id);
+        printf("\n\n\nRegistro com ID %d nao encontrado.", id);
         return;
     }
     if (novoNome != NULL && strlen(novoNome) > 0) {
@@ -314,12 +314,12 @@ void editarRegistro(Pessoa* lista, int id, char* novoNome, float novoPeso, int n
     }
 
     printf("\n\n\nRegistro com ID %d atualizado com sucesso.", id);
-} // Fim da função editarRegistro()
+} // Fim da Funcao editarRegistro()
 
 int listasVazias(ListaPessoas* listas, int qtd_listas) {
     for (int i = 0; i < qtd_listas; i++) {
         if (listas->pessoa != NULL) {
-            return 0;  // Se encontrar uma lista n�o nula, retorna false
+            return 0;  // Se encontrar uma lista nao nula, retorna false
         }
     }
     return 1;  // Se todas as listas forem nulas, retorna true
