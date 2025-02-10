@@ -5,7 +5,7 @@ void clear (void) {
 	system ("cls");
 }//Fim do procedimento clear()
 
-//Função menu()
+//Funcao menu()
 int menu(void) {
 	int op;
 	printf ("\n\n\n\tMenu");
@@ -13,10 +13,11 @@ int menu(void) {
 	printf ("\n\n2 - Desenfileirar Cadastro de Aluno");
 	printf ("\n\n3 - Exibir Fila de Cadastros de Alunos");
 	printf ("\n\n4 - Alterar Cadastros de Alunos");
-	printf ("\n\n5 - Vericar Repetições de Matrículas de Alunos");	
+	printf ("\n\n5 - Vericar Repeticoes de Matriculas de Alunos");	
+	printf ("\n\n6 - Buscar Cadastro de Aluno pelo ID");	
 	printf ("\n\n0 - Sair");
 	
-	printf ("\n\n\nInforme a opção desejada: ");
+	printf ("\n\n\nInforme a opcao desejada: ");
 	scanf ("%d", &op);
 	return op;
 }//Fim da função menu()
