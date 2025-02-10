@@ -2,7 +2,7 @@
 #include <locale.h>
 #include <stdlib.h>
 
-// Capacidade m·xima da Pilha
+// Capacidade m√°xima da Pilha
 #define MAX 100
 
 typedef struct {
@@ -34,7 +34,7 @@ int pilhaCheia(Pilha *p) {
 
 void empilhar(Pilha *p, Livro livro) {
 	if(pilhaCheia(p)) {
-		printf("\n\nN„o È possÌvel empilhar! A pilha est· cheia!");
+		printf("\n\nN√£o √© poss√≠vel empilhar! A pilha est√° cheia!");
 		return;
 	}
 	
@@ -43,7 +43,7 @@ void empilhar(Pilha *p, Livro livro) {
 
 Livro desempilhar(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha est· vazia!");
+		printf("\n\nA pilha est√° vazia!");
 		Livro livroHip = {0, "", "", "", 0, 0.0};
 		return livroHip;
 	}
@@ -53,7 +53,7 @@ Livro desempilhar(Pilha *p) {
 
 Livro topoPilha(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha est· vazia!");
+		printf("\n\nA pilha est√° vazia!");
 		Livro livroHip = {0, "", "", "", 0, 0.0};
 		return livroHip;
 	}
@@ -63,7 +63,7 @@ Livro topoPilha(Pilha *p) {
 
 int tamanhoPilha(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha est· vazia!");
+		printf("\n\nA pilha est√° vazia!");
 		return 0;
 	}
 	
@@ -72,21 +72,42 @@ int tamanhoPilha(Pilha *p) {
 
 void exibirPilha(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha est· vazia!");
+		printf("\n\nA pilha est√° vazia!");
 		return;
 	}
 	
 	printf("\n\n\n\tLivros na Pilha");
 	for(int i = p->topo; i >= 0; i--) {
-		printf("\n\n\nCÛdigo do Livro: %d", p->livros[i].codLivro);
+		printf("\n\n\nC√≥digo do Livro: %d", p->livros[i].codLivro);
 		printf("\n\nNome do Livro: %s", p->livros[i].nome);
 		printf("\n\nNome do Autor: %s", p->livros[i].autor);
-		printf("\n\nN˙mero do ISSN: %s", p->livros[i].issn);
-		printf("\n\nQuantidade de P·ginas: %d", p->livros[i].quantPaginas);
-		printf("\n\nPreÁo do Livro: R$ %.2f", p->livros[i].preco);
+		printf("\n\nN√∫mero do ISSN: %s", p->livros[i].issn);
+		printf("\n\nQuantidade de P√°ginas: %d", p->livros[i].quantPaginas);
+		printf("\n\nPre√ßo do Livro: R$ %.2f", p->livros[i].preco);
 	}
 }
 
+Livro carregarLivro(void) {
+	Livro l;
+	printf ("\n\n\tCadastro de Livro - Empilhamento");
+	printf ("\n\n\nInforme o c√≥digo do livro: ");
+	scanf ("%d", &l.codLivro);
+	fflush(stdin);
+	printf ("\n\nInforme o nome do livro: ");
+	fgets(l.nome, MAX, stdin);
+	fflush(stdin);
+	printf ("\n\nInforme o ISSN do livro: ");
+	fgets(l.issn, 10, stdin);
+	fflush(stdin);
+	printf ("\n\nInforme o autor do livro: ");
+	fgets(l.autor, 30, stdin);
+	fflush(stdin);
+	printf ("\n\nInforme a quantidade de p√°ginas do livro: ");
+	scanf ("%d", &l.quantPaginas);
+	printf ("\n\nInforme o pre√ßo atual (R$) do livro: ");
+	scanf ("%f", &l.preco);
+	return l;
+}
 
 
 
