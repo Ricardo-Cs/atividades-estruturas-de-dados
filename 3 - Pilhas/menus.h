@@ -14,8 +14,9 @@ int menu() {
 	printf("\n\n5 - Verificar - Pilha Cheia");
 	printf("\n\n6 - Verificar - Pilha Vazia");
 	printf("\n\n7 - Exibir Topo");
+	printf("\n\n8 - Buscar Livro pelo Codigo");
 	printf("\n\n0 - Sair");
-	printf("\n\n\nInforme a opção desejada: ");
+	printf("\n\n\nInforme a opcao desejada: ");
 	
 	int op;
 	scanf("%d", &op);
