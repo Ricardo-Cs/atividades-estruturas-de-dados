@@ -2,7 +2,7 @@
 #include <locale.h>
 #include <stdlib.h>
 
-// Capacidade máxima da Pilha
+// Capacidade maxima da Pilha
 #define MAX 100
 
 typedef struct {
@@ -34,7 +34,7 @@ int pilhaCheia(Pilha *p) {
 
 void empilhar(Pilha *p, Livro livro) {
 	if(pilhaCheia(p)) {
-		printf("\n\nNão é possível empilhar! A pilha está cheia!");
+		printf("\n\nNao e possivel empilhar! A pilha esta cheia!");
 		return;
 	}
 	
@@ -43,7 +43,7 @@ void empilhar(Pilha *p, Livro livro) {
 
 Livro desempilhar(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha está vazia!");
+		printf("\n\nA pilha esta vazia!");
 		Livro livroHip = {0, "", "", "", 0, 0.0};
 		return livroHip;
 	}
@@ -53,7 +53,7 @@ Livro desempilhar(Pilha *p) {
 
 Livro topoPilha(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha está vazia!");
+		printf("\n\nA pilha esta vazia!");
 		Livro livroHip = {0, "", "", "", 0, 0.0};
 		return livroHip;
 	}
@@ -63,7 +63,7 @@ Livro topoPilha(Pilha *p) {
 
 int tamanhoPilha(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha está vazia!");
+		printf("\n\nA pilha esta vazia!");
 		return 0;
 	}
 	
@@ -72,25 +72,25 @@ int tamanhoPilha(Pilha *p) {
 
 void exibirPilha(Pilha *p) {
 	if(pilhaVazia(p)) {
-		printf("\n\nA pilha está vazia!");
+		printf("\n\nA pilha esta vazia!");
 		return;
 	}
 	
 	printf("\n\n\n\tLivros na Pilha");
 	for(int i = p->topo; i >= 0; i--) {
-		printf("\n\n\nCódigo do Livro: %d", p->livros[i].codLivro);
+		printf("\n\n\nCodigo do Livro: %d", p->livros[i].codLivro);
 		printf("\n\nNome do Livro: %s", p->livros[i].nome);
 		printf("\n\nNome do Autor: %s", p->livros[i].autor);
-		printf("\n\nNúmero do ISSN: %s", p->livros[i].issn);
-		printf("\n\nQuantidade de Páginas: %d", p->livros[i].quantPaginas);
-		printf("\n\nPreço do Livro: R$ %.2f", p->livros[i].preco);
+		printf("\n\nNumero do ISSN: %s", p->livros[i].issn);
+		printf("\n\nQuantidade de Paginas: %d", p->livros[i].quantPaginas);
+		printf("\n\nPreco do Livro: R$ %.2f", p->livros[i].preco);
 	}
 }
 
 Livro carregarLivro(void) {
 	Livro l;
 	printf ("\n\n\tCadastro de Livro - Empilhamento");
-	printf ("\n\n\nInforme o código do livro: ");
+	printf ("\n\n\nInforme o codigo do livro: ");
 	scanf ("%d", &l.codLivro);
 	fflush(stdin);
 	printf ("\n\nInforme o nome do livro: ");
@@ -102,16 +102,24 @@ Livro carregarLivro(void) {
 	printf ("\n\nInforme o autor do livro: ");
 	fgets(l.autor, 30, stdin);
 	fflush(stdin);
-	printf ("\n\nInforme a quantidade de páginas do livro: ");
+	printf ("\n\nInforme a quantidade de paginas do livro: ");
 	scanf ("%d", &l.quantPaginas);
-	printf ("\n\nInforme o preço atual (R$) do livro: ");
+	printf ("\n\nInforme o preco atual (R$) do livro: ");
 	scanf ("%f", &l.preco);
 	return l;
 }
 
-
-
-
-
-
-
+//Funcao para buscarPilha()
+Livro* buscarPilha(Pilha *p, int codLivro) {
+	if (pilhaVazia(p)) {
+		printf ("\n\nA pilha esta vazia! Nao ha dados para buscar.\n");
+		return NULL;
+	}
+	for (int i = p->topo; i >= 0; i--) {
+		if (p->livros[i].codLivro == codLivro) {
+			return &p->livros[i];
+		}
+	}
+	printf ("\n\nLivro com codigo %d nao encontrado na pilha.\n", codLivro);
+	return NULL;
+}//Fim da funcao buscarPilha()
