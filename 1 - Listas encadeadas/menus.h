@@ -12,14 +12,14 @@ void menuPrincipal (void) {
 	printf ("\n\n6 - Ordenar Lista Encadeada");
 	printf ("\n\n7 - Editar Registro na Lista Encadeada");
 	printf ("\n\n8 - Comparar Registros");
-	printf ("\n\n9 - Verificar RepitiÃ§Ãµes de ID na Lista Encadeada");
+	printf ("\n\n9 - Verificar Repiticoes de ID na Lista Encadeada");
 	printf ("\n\n0 - Sair");
 }//Fim do procedimento menuPrincipal()
 
 int menuCampo (void) {
 	int op;
 	system ("cls");
-	printf ("\n\n\n\tMenu de Seleção de Campo");
+	printf ("\n\n\n\tMenu de Selecao de Campo");
 	printf ("\n\n\n1 - ID");
 	printf ("\n\n2 - Nome");
 	printf ("\n\n3 - Peso");
@@ -32,12 +32,12 @@ int menuCampo (void) {
 int menuListas(ListaPessoas* listaPessoas[], int qtd_listas) {    
     int n;
 
-    printf("\n\n\tListas disponíveis\n\n");
+    printf("\n\n\tListas disponiveis\n\n");
     for (int i = 0; i < qtd_listas; i++) {
         if (listaPessoas[i] != NULL) {  // Verifica se a lista foi inicializada
             printf("\n%d - %s", i + 1, listaPessoas[i]->nome);
         } else {
-            printf("\n%d - [Lista não inicializada]", i + 1);
+            printf("\n%d - [Lista nao inicializada]", i + 1);
         }
     }
 
@@ -46,13 +46,12 @@ int menuListas(ListaPessoas* listaPessoas[], int qtd_listas) {
         scanf("%d", &n);
 
         if (n < 1 || n > qtd_listas || listaPessoas[n - 1] == NULL) {
-            printf("Opção inválida! Escolha um número entre 1 e %d.\n", qtd_listas);
+            printf("Opcao invalida! Escolha um numero entre 1 e %d.\n", qtd_listas);
         }
     } while (n < 1 || n > qtd_listas || listaPessoas[n - 1] == NULL);
 	system("cls");
     return n - 1;
 }
-
 
 //Procedimento clear()
 void clear (void) {
