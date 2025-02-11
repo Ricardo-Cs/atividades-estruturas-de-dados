@@ -123,3 +123,14 @@ Livro* buscarPilha(Pilha *p, int codLivro) {
 	printf ("\n\nLivro com codigo %d nao encontrado na pilha.\n", codLivro);
 	return NULL;
 }//Fim da funcao buscarPilha()
+
+
+// Função para compararElementos()
+int compararElementos(Pilha *p, int codLivro) {
+    for (int i = 0; i <= p->topo; i++) {
+        if (p->livros[i].codLivro == codLivro) {
+            return 1; 
+        } 
+    }
+    return 0; 
+} //Fim da função compararElementos()
