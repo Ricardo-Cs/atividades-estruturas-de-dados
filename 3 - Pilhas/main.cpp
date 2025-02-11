@@ -91,6 +91,20 @@ int main(int argc, char* argv[]) {
 				clear();
 				break;
 				}
+				
+			case 9: // Nova opção para verificar/comparar se um livro está na pilha
+			    printf("\n\n\nOpcao Verificar Livro na Pilha");
+			    int codLivro;
+			    printf("\nDigite o codigo do livro a ser verificado: ");
+			    scanf("%d", &codLivro);
+			    if (compararElementos(&pilha, codLivro)) {
+			        printf("\n\nO livro com codigo %d esta na pilha.\n\n", codLivro);
+			    } else {
+			        printf("\n\nO livro com codigo %d nao esta na pilha.\n\n", codLivro);
+			    }
+			    system("pause");
+			    break;
+				
 			case 0:
 				printf("\n\n\nVoce optou em sair!");
 				controle = 0;
