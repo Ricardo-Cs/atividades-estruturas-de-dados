@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
 				break;
 			
 			case 6:
-				printf("\n\n\n\tOcao Verificar - Pilha Vazia");
+				printf("\n\n\n\tOpcao Verificar - Pilha Vazia");
 				if(pilhaVazia(&pilha))
 					printf("\n\n\nA pilha esta vazia!\n\n");
 				else 
@@ -110,6 +110,21 @@ int main(int argc, char* argv[]) {
   				verificarRepeticao(&pilha);
  				clear();
     				break;
+    		
+    		case 11: {
+                printf("\n\n\n\tOpcao Editar Livro");
+                int codLivro;
+                printf("\n\nInforme o codigo do livro a ser editado: ");
+                scanf("%d", &codLivro);
+                Livro* livroEditado = buscarPilha(&pilha, codLivro);
+                
+                if (livroEditado != NULL) {
+                    editarLivro(livroEditado);
+                }
+                clear();
+                break;
+            }
+
 			
 			case 0:
 				printf("\n\n\nVoce optou em sair!");
@@ -123,8 +138,6 @@ int main(int argc, char* argv[]) {
 		}
 		
 	} while (controle != 0);
-
-			
 	
 	printf("\n\nObrigado por utilizar o nosso programa!\n\n");
 	system("Pause");

@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <locale.h>
-#include <stdlib.h>
-
 // Capacidade maxima da Pilha
 #define MAX 100
 
@@ -9,7 +5,7 @@ typedef struct {
 	int codLivro;
 	char nome[100];
 	char issn[10];
-	char autor[10];
+	char autor[30];
 	int quantPaginas;
 	float preco;
 } Livro;
@@ -175,3 +171,33 @@ void verificarRepeticao(Pilha *p) {
         printf("\nNenhum livro repetido encontrado.");
     }
 }//fim função verificarRepeticao()
+
+void editarLivro(Livro* livro) {
+    if (livro == NULL) {
+        printf("\n\nLivro não encontrado!\n");
+        return;
+    }
+    
+    printf("\n\nEditando livro - Código: %d\n", livro->codLivro);
+    
+    printf("\nNovo nome do livro (atual: %s): ", livro->nome);
+    fflush(stdin);
+    fgets(livro->nome, MAX, stdin);
+    
+    printf("\nNovo ISSN do livro (atual: %s): ", livro->issn);
+    fflush(stdin);
+    fgets(livro->issn, sizeof(livro->issn), stdin);
+    
+    printf("\nNovo autor do livro (atual: %s): ", livro->autor);
+    fflush(stdin);
+    fgets(livro->autor, sizeof(livro->autor), stdin);
+    
+    printf("\nNova quantidade de páginas (atual: %d): ", livro->quantPaginas);
+    fflush(stdin);
+    scanf("%d", &livro->quantPaginas);
+    
+    printf("\nNovo preço do livro (atual: R$ %.2f): ", livro->preco);
+    scanf("%f", &livro->preco);
+    
+    printf("\n\nLivro atualizado com sucesso!\n");
+}
