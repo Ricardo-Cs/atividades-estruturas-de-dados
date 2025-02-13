@@ -117,6 +117,12 @@ int main(int argc, char* argv[]) {
 		}
 		
 	} while (controle != 0);
+
+			case 10:
+			printf("\n\n\n\tOpção Verificar Repetição de Livros");
+  			verificarRepeticao(&pilha);
+ 			clear();
+    			break;
 	
 	printf("\n\nObrigado por utilizar o nosso programa!\n\n");
 	system("Pause");
