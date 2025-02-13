@@ -134,3 +134,44 @@ int compararElementos(Pilha *p, int codLivro) {
     }
     return 0; 
 } //Fim da função compararElementos()
+
+//função verificarRepeticao()
+void verificarRepeticao(Pilha *p) {
+    if (pilhaVazia(p)) {
+        printf("\n\nA pilha está vazia!");
+        return;
+    }
+
+    int contRepetidos[MAX] = {0};
+
+    printf("\n\nVerificando livros repetidos na pilha:\n");
+
+    int encontrou = 0;
+
+    for (int i = p->topo; i >= 0; i--) {
+        if (contRepetidos[i] == 0) {
+            int contador = 1;
+
+            for (int j = i - 1; j >= 0; j--) {
+                if (p->livros[i].codLivro == p->livros[j].codLivro) {
+                    contador++;
+                    contRepetidos[j] = 1;
+                }
+            }
+
+            if (contador > 1) {
+                encontrou = 1;
+                printf("\nLivro repetido encontrado:");
+                printf("\nCódigo: %d", p->livros[i].codLivro);
+                printf("\nNome: %s", p->livros[i].nome);
+                printf("\nAutor: %s", p->livros[i].autor);
+                printf("\nQuantidade de repetições: %d", contador);
+                printf("\n-----------------------------");
+            }
+        }
+    }
+
+    if (!encontrou) {
+        printf("\nNenhum livro repetido encontrado.");
+    }
+}//fim função verificarRepeticao()
