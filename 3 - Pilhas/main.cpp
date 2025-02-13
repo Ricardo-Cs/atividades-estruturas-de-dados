@@ -104,11 +104,17 @@ int main(int argc, char* argv[]) {
 			    }
 			    system("pause");
 			    break;
-				
+			
+			case 10:
+				printf("\n\n\n\tOpção Verificar Repetição de Livros");
+  				verificarRepeticao(&pilha);
+ 				clear();
+    				break;
+			
 			case 0:
 				printf("\n\n\nVoce optou em sair!");
 				controle = 0;
-        		clear();
+        			clear();
 				break;
 			
 			default:
@@ -118,11 +124,7 @@ int main(int argc, char* argv[]) {
 		
 	} while (controle != 0);
 
-			case 10:
-			printf("\n\n\n\tOpção Verificar Repetição de Livros");
-  			verificarRepeticao(&pilha);
- 			clear();
-    			break;
+			
 	
 	printf("\n\nObrigado por utilizar o nosso programa!\n\n");
 	system("Pause");
